@@ -5,6 +5,21 @@
   <%= f.text_field :title %>
   <br />
 
+  <%= f.label :artist_name, "Song artist" %>
+  <%= f.text_field :artist_name, list: "artists_autocomplete"%>
+  <datalist id="artists_autocomplete">
+    <% @artists.each do |artist| %>
+      <option value = "<%= artist.name%>" >
+    <% end %>  
+  </datalist>
+
+  <%= f.label :genre_id, "Song genre" %>
+  <%= f.collection_select :genre_id, @genres, :id, :name %>
+
+  <%= f.label :notes, "Song notes" %>
+  <input name="song[note_contents][]" id=song_notes_1>
+  <input name="song[note_contents][]" id=song_notes_2>
+  <input name="song[note_contents][]" id=song_notes_3>
   <%= f.submit %>
 <% end %>
 
